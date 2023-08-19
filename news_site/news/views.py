@@ -1,8 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import News
+from .models import News, Category
 
 def index(request):
     news = News.objects.all()
-    return render(request, 'news/index.html', {'news': news, 'title': 'Список новостей'})
+    categories = Category.objects.all()
+    context = {
+        'news': news,
+        'title': 'Список новостей',
+        'categories': categories,
+    }
+    return render(request, 'news/index.html', context=context)
     # return HttpResponse('Hello world')
+
+
