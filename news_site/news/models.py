@@ -16,3 +16,13 @@ class News(models.Model):
         verbose_name = 'Новость'      #наименование модели в единственнои числе
         verbose_name_plural = 'Новости'   #наименование модели во множественном числе
         ordering = ['-created_at'] # сортировать по убыванию свежая новость сверху
+
+
+class Category(models.Model):
+    title = models.CharField(max_length=150, db_index=True, verbose_name='Наименование  катенории')
+
+    class Meta:
+        verbose_name = 'Категория'      #наименование модели в единственнои числе
+        verbose_name_plural = 'Категории'   #наименование модели во множественном числе
+        ordering = ['title'] # сортировать по названию
+
