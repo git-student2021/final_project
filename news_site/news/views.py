@@ -13,4 +13,8 @@ def index(request):
     return render(request, 'news/index.html', context=context)
     # return HttpResponse('Hello world')
 
-
+def get_category(request, category_id):
+    news = News.objects.filter(category_id=category_id)
+    categories = Category.objects.all()
+    category = Category.objects.get(pk=category_id)
+    return render(request, 'news/category.html', {'news': news, 'categories': categories, 'category': category})
