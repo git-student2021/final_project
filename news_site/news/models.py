@@ -6,7 +6,7 @@ class News(models.Model):
     content = models.TextField(blank=True, verbose_name='Контент')   # все поля обязательны к заполнению если blank=True то запишется пустая строка
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Обнавлено')
-    photo = models.ImageField(upload_to='photos/%Y/%m/%d', verbose_name='Фото') # upload_to='photos/%Y/%m/%d' django cоздаст папку и будет хранить изображния
+    photo = models.ImageField(upload_to='photos/%Y/%m/%d', verbose_name='Фото', blank=True) # upload_to='photos/%Y/%m/%d' django cоздаст папку и будет хранить изображния
     is_publishished = models.BooleanField(default=True, verbose_name='Опубликовано')
 
     def __str__(self):
