@@ -8,3 +8,6 @@ class News(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     photo = models.ImageField(upload_to='photos/%Y/%m/%d') # upload_to='photos/%Y/%m/%d' django cоздаст папку и будет хранить изображния
     is_publishished = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.title
