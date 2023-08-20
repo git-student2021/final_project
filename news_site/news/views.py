@@ -21,3 +21,8 @@ def view_news(request, news_id):
     # news_item = News.objects.get(pk=news_id)
     news_item = get_object_or_404(News, pk=news_id) # если стрпницы нет то на выходе 404 ошибка
     return render(request, 'news/view_news.html', {"news_item": news_item})
+
+
+def add_news(request):
+    """Подключаем Добавить новость на главной странице"""
+    return render(request, 'news/add_news.html')
