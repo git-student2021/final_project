@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
+
 
 #from django.http import HttpResponse
 from .models import News, Category
@@ -35,6 +36,13 @@ class NewsByCategory(ListView):
     def get_queryset(self):
         return News.objects.filter(category_id=self.kwargs['category_id'], is_published=True)
 
+
+class ViewNews(DetailView):
+    model = News
+    context_object_name = 'news_item'
+    # pk_url_kwarg = 'news_id'
+    # template_name = 'news/news_detail.html'  # указываем с каким шаблонам будем работать
+
 # def index(request):
 #     news = News.objects.all()
 #     context = {
@@ -44,10 +52,10 @@ class NewsByCategory(ListView):
 #     return render(request, 'news/index.html', context=context)
 #     # return HttpResponse('Hello world')
 
-def get_category(request, category_id):
-    news = News.objects.filter(category_id=category_id)
-    category = Category.objects.get(pk=category_id)
-    return render(request, 'news/category.html', {'news': news, 'category': category})
+# def get_category(request, category_id):
+#     news = News.objects.filter(category_id=category_id)
+#     category = Category.objects.get(pk=category_id)
+#     return render(request, 'news/category.html', {'news': news, 'category': category})
 
 def view_news(request, news_id):
     """Подключаем кнопку Read more"""
