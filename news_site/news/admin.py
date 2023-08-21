@@ -4,12 +4,12 @@ from .models import News, Category
 
 
 class NewsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'category', 'created_at', 'updated_at', 'is_publishished')
+    list_display = ('id', 'title', 'category', 'created_at', 'updated_at', 'is_published')
     # поля которые видно в админке
     list_display_links = ('id', 'title') #поля которые должны быть ссылками
     search_fields = ('title', 'content') # поля по которым производится поиск
-    list_editable = ('is_publishished',)# можно добавлять , появляются чек-боксы
-    list_filter = ('is_publishished', 'category') # можно сортировать по полям
+    list_editable = ('is_published',)# можно добавлять , появляются чек-боксы
+    list_filter = ('is_published', 'category') # можно сортировать по полям
 
 
 class CategoryAdmin(admin.ModelAdmin):
