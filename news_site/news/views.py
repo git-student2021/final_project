@@ -1,7 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import ListView
+
 #from django.http import HttpResponse
 from .models import News, Category
 from .forms import NewsForm
+
+class HomeNews(ListView):
+    model = News
+
+
 
 def index(request):
     news = News.objects.all()
