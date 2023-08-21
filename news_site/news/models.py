@@ -9,7 +9,7 @@ class News(models.Model):
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Обнавлено')
     photo = models.ImageField(upload_to='photos/%Y/%m/%d', verbose_name='Фото', blank=True) # upload_to='photos/%Y/%m/%d' django cоздаст папку и будет хранить изображния
     is_published = models.BooleanField(default=True, verbose_name='Опубликовано')
-    category = models.ForeignKey('Category', on_delete=models.PROTECT, null=True, verbose_name='Категория') # связь между моделями
+    category = models.ForeignKey('Category', on_delete=models.PROTECT, verbose_name='Категория') # связь между моделями
 
     def get_absolute_url(self):
         return reverse('view_news', kwargs={"news_id": self.pk})

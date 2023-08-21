@@ -24,13 +24,27 @@ def view_news(request, news_id):
     return render(request, 'news/view_news.html', {"news_item": news_item})
 
 
+# def add_news(request):
+#     """Подключаем Добавить новость на главной странице, форма не связана с моделью"""
+#     if request.method == 'POST':
+#         form = NewsForm(request.POST)
+#         if form.is_valid():
+#             # print(form.cleaned_data)
+#             news = News.objects.create(**form.cleaned_data)
+#             return redirect(news)
+#
+#     else:
+#         form = NewsForm()
+#     return render(request, 'news/add_news.html', {'form': form})
+
 def add_news(request):
-    """Подключаем Добавить новость на главной странице"""
+    """Подключаем Добавить новость на главной странице, форма связана с моделью"""
     if request.method == 'POST':
         form = NewsForm(request.POST)
         if form.is_valid():
             # print(form.cleaned_data)
-            news = News.objects.create(**form.cleaned_data)
+            # news = News.objects.create(**form.cleaned_data)
+            news = form.save()
             return redirect(news)
 
     else:
