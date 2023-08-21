@@ -23,3 +23,4 @@ class NewsForm(forms.ModelForm):
             'content': forms.Textarea(attrs={"class": "form-control", "rows": 5}),
             'category': forms.Select(attrs={"class": "form-control"}),
         }
+
