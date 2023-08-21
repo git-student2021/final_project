@@ -1,5 +1,7 @@
 from django import forms
 from .models import Category, News
+import re
+from django.core.exceptions import ValidationError
 
 # class NewsForm(forms.Form):
 #     """Подключаем Добавить новость на главной странице создаем форму, форма не связана с моделью"""
@@ -24,3 +26,9 @@ class NewsForm(forms.ModelForm):
             'category': forms.Select(attrs={"class": "form-control"}),
         }
 
+    def clean_title(self):
+        """дополнительная валидация"""
+        title = self.cleaned_data['title']
+        if re.match(r'\d', title):
+            raise ValidationError('Название не должно начинаться с цифры')
+        return title
