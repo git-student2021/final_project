@@ -7,6 +7,17 @@ from .forms import NewsForm
 
 class HomeNews(ListView):
     model = News
+    template_name = 'news/home_news_list.html'  # указываем с каким шаблонам будем работать (news_list.html по умолчанию)
+    context_object_name = 'news' # # указываем с каким объектом будем работать (object_list по умолчанию)
+    # extra_context = {'title': ' Главная'}
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Главная страница'
+        return context
+
+    def get_queryset(self):
+        return News.objects.filter(is_published=True)
 
 
 
