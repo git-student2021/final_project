@@ -12,6 +12,7 @@ from .utils import MyMixin
 from django.contrib import messages
 from django.contrib.auth import login, logout
 
+
 def register(request):
     """регистрация пользователя"""
     if request.method == 'POST':
