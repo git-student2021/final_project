@@ -11,6 +11,7 @@ from .utils import MyMixin
 
 
 def test(request):
+    """постраничная навигация с помощью функции"""
     objects = ['john1', 'paul2', 'george3', 'ringo4', 'john5', 'paul6', 'george7']
     paginator = Paginator(objects, 2)
     page_num = request.GET.get('page', 1)
@@ -26,6 +27,7 @@ class HomeNews(MyMixin, ListView):
     context_object_name = 'news' # # указываем с каким объектом будем работать (object_list по умолчанию)
     # extra_context = {'title': ' Главная'}
     mixin_prop = 'hello world'
+    paginate_by = 2 # постраничная навигация количество новостей на одной странице
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -52,6 +54,7 @@ class NewsByCategory(MyMixin, ListView):
     template_name = 'news/home_news_list.html'  # указываем с каким шаблонам будем работать (news_list.html по умолчанию)
     context_object_name = 'news'  # # указываем с каким объектом будем работать (object_list по умолчанию)
     allow_empty = False
+    paginate_by = 2  # постраничная навигация количество новостей на одной странице
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
