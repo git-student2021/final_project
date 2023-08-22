@@ -42,6 +42,12 @@ def user_login(request):
     return render(request, 'news/login.html', {"form": form})
 
 
+def user_logout(request):
+    """выход пользователя"""
+    logout(request)
+    return redirect('login')
+
+
 def test(request):
     """постраничная навигация с помощью функции"""
     objects = ['john1', 'paul2', 'george3', 'ringo4', 'john5', 'paul6', 'george7']
