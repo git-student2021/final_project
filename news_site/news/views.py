@@ -21,7 +21,7 @@ def register(request):
             user = form.save()
             login(request, user)
             messages.success(request, 'Вы успешно зарегистрировались')
-            return redirect('Home')
+            return redirect('home')
         else:
             messages.error(request, 'Ошибка регистрации')
     else:
@@ -65,7 +65,7 @@ class HomeNews(MyMixin, ListView):
     context_object_name = 'news' # # указываем с каким объектом будем работать (object_list по умолчанию)
     # extra_context = {'title': ' Главная'}
     mixin_prop = 'hello world'
-    paginate_by = 2 # постраничная навигация количество новостей на одной странице
+    paginate_by = 5 # постраничная навигация количество новостей на одной странице
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -92,7 +92,7 @@ class NewsByCategory(MyMixin, ListView):
     template_name = 'news/home_news_list.html'  # указываем с каким шаблонам будем работать (news_list.html по умолчанию)
     context_object_name = 'news'  # # указываем с каким объектом будем работать (object_list по умолчанию)
     allow_empty = False
-    paginate_by = 2  # постраничная навигация количество новостей на одной странице
+    paginate_by = 3  # постраничная навигация количество новостей на одной странице
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
